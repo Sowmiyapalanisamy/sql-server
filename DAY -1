@@ -1,0 +1,75 @@
+
+create database inv_management;
+
+use inv_management;
+Create Table Users(
+UserID int primary key identity(1,1) NOT NULL,
+UserName varchar(50),
+Password varchar(25),
+FullName varchar(255),
+IsActive bit,
+category varchar(50),
+);
+Create Table ProductMaster(
+productid int,
+productName varchar(50),
+AvailableQty bigint
+); 
+
+Create Table Transactions (
+TransactionId int primary key identity(1,1),
+Transactiondate date,
+ProductId int,
+TransactionType varchar(50),
+Qty int,
+UpdatedBy int
+);
+
+Insert into users values ('Deiva','Deiva@123','Deivadharshini',1,'CSE');
+Insert into users values ('sruthi','sruthi@123','SruthiDeiva',1,'ECE');
+Insert into users values ('Sathya','sathya@123','SathyaDeiva',1,'It');
+
+Insert into ProductMaster values(11,'Soap',5);
+Insert into ProductMaster values(12,'oil',50);
+Insert into ProductMaster values(13,'Shampoo',30);
+
+Insert into Transactions values('1.12.2001',11,'in',32,1);
+Insert into Transactions values('2.12.2001',12,'in',33,2);
+Insert into Transactions values('3.12.2001',13,'in',34,3);
+
+Alter table users Add phoneno int;
+Alter table users Add Address varchar(50);
+Alter table users Add city varchar(50);
+
+update Users set category='Developer' where UserId=1;
+update Users set category='Delivery' where UserId=2;
+update Users set category='customer' where UserId=3; 
+
+select UserName,fullname,category from users;
+
+select distinct fullname,username from users;
+
+
+select * from productmaster;
+
+--filter data where clause
+ 
+select * from ProductMaster where AvailableQty >2;
+
+select * from productmaster where availableqty <60; 
+
+select * from productmaster where availableqty between 2 and 50;
+
+select * from productmaster where availableqty  not between 10 and 30;
+
+select * from productmaster where availableqty =30;
+
+select * transactions;
+
+select  transactiondate,transactiontype from [transactions];
+
+select * from [transactions] where transactiontype='in';
+
+select * from productmaster where productname='oil';
+
+insert into productmaster values(14,'liquid',35);
